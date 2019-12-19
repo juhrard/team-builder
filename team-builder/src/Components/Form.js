@@ -4,7 +4,8 @@ const MemberApplication = props => {
 
   const [member, setMember] = useState({
     fname: "",
-    lname: ""
+    email: "",
+    role: ""
   })
 
   const handleChanges = e => {
@@ -15,12 +16,12 @@ const MemberApplication = props => {
   const submitForm = e => {
     e.preventDefault();
     props.addNewMember(member);
-    setMember({ fname: "", lname: "" });
+    setMember({ fname: "", email: "", role: "" });
   }
 
   return (
     <form onSubmit={submitForm}>
-      <label htmlFor="fname">First Name</label>
+      <label htmlFor="fname">First Name: </label>
       <input
         id="fname"
         type="text"
@@ -29,14 +30,23 @@ const MemberApplication = props => {
         name="fname"
         value={member.fname}
       />
-      <label htmlFor="lname">Last Name</label>
+      <label htmlFor="email"> Email: </label>
       <input
-        id="lname"
+        id="email"
         type="text"
-        placeholder="Last Name"
-        name="lname"
+        placeholder="Email"
+        name="email"
         onChange={handleChanges}
-        value={member.lname}
+        value={member.email}
+      />
+      <label htmlFor="role"> Role: </label>
+      <input
+        id="role"
+        type="text"
+        placeholder="Role"
+        name="role"
+        onChange={handleChanges}
+        value={member.role}
       />
       <button type="submit">Submit Application</button>
     </form>

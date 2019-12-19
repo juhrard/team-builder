@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import MemberApplication from './Components/Form'
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
   const [members, setMembers] = useState([]);
+  const [memberToEdit, setMemberToEdit] = useState();
+  console.log(members);
 
   const addNewMember = member => {
     const newMember = {
       id: Date.now(),
       fname: member.fname,
-      lname: member.lname
+      email: member.email,
+      role: member.role
     };
     setMembers([...members, newMember]);
   };
@@ -23,7 +25,10 @@ function App() {
       <div>
         {members.map(member => (
           <div className="member" key={member.id}>
-            <h2>{member.fname} {member.lname}</h2>
+            <h2>{member.fname}</h2>
+            <p>{member.email}</p>
+            <h3>{member.role}</h3>
+            <button onClick={() => setMemberToEdit(member)}>Edit</button>            
           </div>
         ))}
       </div>
